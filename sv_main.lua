@@ -1,6 +1,9 @@
 RegisterNetEvent('erp-fuel:initFuel')
 AddEventHandler('erp-fuel:initFuel', function(sentVeh)
-	Entity(NetworkGetEntityFromNetworkId(sentVeh)).state.fuel = math.random(40, 60)
+	local veh = NetworkGetEntityFromNetworkId(sentVeh)
+	if veh ~= 0 then
+		Entity(veh).state.fuel = math.random(40, 60)
+	end
 end)
 
 AddEventHandler('erp-fuel:setFuel', function(sentVeh, sentFuel)
@@ -24,7 +27,7 @@ end
 exports('GetFuel', GetFuel) -- exports['erp-fuel']:GetFuel(veh)
 
 RegisterCommand("setfuel", function(source, args, rawCommand)
- TriggerEvent('erp-fuel:setFuel', GetVehiclePedIsIn(GetPlayerPed(source)), tonumber(args[1]))
+ TriggerEvent('erp-fuel:setFuel', 2151154, tonumber(args[1]))
  Wait(500)
  print(GetFuel(GetVehiclePedIsIn(GetPlayerPed(source))))
 end, false)
