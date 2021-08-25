@@ -74,6 +74,7 @@ local function Round(num, numDecimalPlaces)
 end
 
 local function SetFuel(sentVeh, sentFuel)
+	if not DoesEntityExist(sentVeh) then return end;
 	if type(sentFuel) == 'number' and sentFuel >= 0 and sentFuel <= 100 then
 		local fuel = sentFuel + 0.0
 		Entity(sentVeh).state:set('fuel', fuel, true)
@@ -82,11 +83,12 @@ local function SetFuel(sentVeh, sentFuel)
 end
 
 local function GetFuel(sentVeh)
+	if not DoesEntityExist(sentVeh) then return end;
 	return Entity(sentVeh).state.fuel or -1.0
 end
 
 local function doFuel(sentVeh)
-	if sentVeh ~= 0 then
+	if DoesEntityExist(sentVeh) then
 		local currFuel = GetFuel(sentVeh)
 		if currFuel == -1.0 then
 			TriggerServerEvent('erp-fuel:initFuel', VehToNet(sentVeh))

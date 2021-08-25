@@ -23,6 +23,8 @@ end
 
 exports('GetFuel', GetFuel) -- exports['erp-fuel']:GetFuel(veh)
 
---[[RegisterCommand("setfuel", function(source, args, rawCommand)
+RegisterCommand("setfuel", function(source, args, rawCommand)
  TriggerEvent('erp-fuel:setFuel', GetVehiclePedIsIn(GetPlayerPed(source)), tonumber(args[1]))
-end, false)]]
+ Wait(500)
+ print(GetFuel(GetVehiclePedIsIn(GetPlayerPed(source))))
+end, false)
