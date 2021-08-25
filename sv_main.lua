@@ -27,7 +27,7 @@ end
 exports('GetFuel', GetFuel) -- exports['erp-fuel']:GetFuel(veh)
 
 RegisterCommand("setfuel", function(source, args, rawCommand)
- TriggerEvent('erp-fuel:setFuel', 2151154, tonumber(args[1]))
- Wait(500)
- print(GetFuel(GetVehiclePedIsIn(GetPlayerPed(source))))
-end, false)
+	TriggerEvent('erp-fuel:setFuel', GetVehiclePedIsIn(GetPlayerPed(source)), tonumber(args[1]))
+	Wait(500)
+	print(GetFuel(GetVehiclePedIsIn(GetPlayerPed(source))))
+ end, false)
